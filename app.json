@@ -1,0 +1,48 @@
+{
+  "pages":[
+    "pages/home/index",
+    "pages/home/index/index",
+    "pages/home/search/search",
+    "pages/home/button/index",
+    "pages/home/button/driver/column",
+    "pages/home/button/report/line",
+    "pages/home/button/resolve/line",
+    "pages/home/button/comment/line",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#4169E1",
+    "navigationBarTitleText": "HWE",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh":true
+
+  },
+  "tabBar":{
+    "color": "white",
+    "backgroundColor":"#e6e6e6",
+    "borderStyle":"white",
+    "position":"bottom",
+    "list":[
+      {
+       "selectedIconPath":"icons/help1.png",
+       "iconPath":"icons/help2.png",
+       "pagePath":"pages/logs/logs",
+       "txt":"Help"
+      },
+      {
+        "selectedIconPath": "icons/home1.png",
+        "iconPath": "icons/home2.png",
+        "pagePath": "pages/home/index",
+        "txt": "HOME"
+      },
+      {
+        "selectedIconPath": "icons/enjoy1.png",
+        "iconPath": "icons/enjoy2.png",
+        "pagePath": "pages/index/index",
+        "txt": "Enjoy"
+      }
+    ]
+  }
+}
