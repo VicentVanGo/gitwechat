@@ -3,12 +3,11 @@ var app = getApp();
 var lineChart = null;
 //columnchart
 var LIST = [];
-var Len;
 var timeweek;
 var columnChart = null;
 var chartData = {
   main: {
-    title: 'Report Bug Num',
+    title: 'Comment Bug Num',
     data: [],
     categories: ['ningz', 'mengc', 'yixuanw', 'minghuiw', 'hhan',
       'jiangx', 'lid', 'luwang', 'huilinw', 'ljingying',
@@ -28,7 +27,7 @@ Page({
     // tab切换
     currentTab: 0,
     secondtab:'...',
-    chartTitle: 'Report Bug Num',
+    chartTitle: 'Comment Bug Num',
     isMainChartDisplay: true,
     show: true,//控制下拉列表的显示隐藏，false隐藏、true显示
     selectData: ['ningz', 'mengc', 'yixuanw', 'minghuiw', 'hhan',
@@ -36,8 +35,7 @@ Page({
       'dayuw', 'chaofengw', 'yex', 'bdang', 'dpang',
       'yhu'],//下拉列表的数据
     index: 16, //选择的下拉列表下标
-    listData: [{ 'bugid': 0, "summary":  0 }],
-    sumofdata:0,
+    listData: [{ 'bugid': 0, "summary":  0 }]
   },
      // 点击下拉显示框
   
@@ -49,7 +47,7 @@ Page({
     columnChart.updateData({
       categories: chartData.main.categories,
       series: [{
-        name: 'resolve num',
+        name: 'comment num',
         data: chartData.main.data,
         format: function (val, name) {
           return val.toFixed(0);
@@ -72,26 +70,23 @@ Page({
       var skey = chartData.main.categories[index];
       var that = this
       wx.request({
-        url: 'http://123.206.68.186:443/info/repo',//换成实际接口地址
+        url: 'http://123.206.68.186:443/info/comm',//换成实际接口地址
         data: { 'keyname': skey },
         success: function (res) {
           console.log('id from server is: ' + res['data']['num']);
           console.log('id from server is: ' + res['data']['my']);
           LIST=[];
-          Len = res['data']['num'];
           for (var d = 0; d < res['data']['num']; d++) {
             //list[d]["bugid"]=res['data']['my'][d][0];
             //list[d]["summary"] = res['data']['my'][d][1];
             console.log("111");
             LIST[d] = { "bugid": res['data']['my'][d][0], "summary": res['data']['my'][d][1] };
-          };
-          if (Len >= 8) { Len = 8 };
+          }
           //console.log(LIST);
           that.setData({
             listData: LIST,
             secondtab: skey,
             currentTab: 1,
-            sumofdata: Len,
           });
         },
       })
@@ -143,7 +138,7 @@ Page({
       console.error('getSystemInfoSync failed!');
     }
     wx.request({
-      url: 'http://123.206.68.186:443/report',//换成实际接口地址
+      url: 'http://123.206.68.186:443/comment',//换成实际接口地址
       //data: { 'id': 1 },
       success: function (res) {
         //chartData.main.data = res.data.data;
@@ -308,7 +303,7 @@ Page({
             min: 0
           },
           width: windowWidth,
-          height: 250,
+          height: 300,
           dataLabel: false,
           dataPointShape: true,
           extra: {
@@ -329,7 +324,7 @@ Page({
             console.error('getSystemInfoSync failed!');
         }
     wx.request({
-      url: 'http://123.206.68.186:443/week/rep',//换成实际接口地址
+      url: 'http://123.206.68.186:443/week/com',//换成实际接口地址
       //data: { 'id': 1 },
       success: function (res) {
         chartData.main.data = res['data']['comdd'];

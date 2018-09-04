@@ -2,8 +2,12 @@ const app = getApp()
 Page({
   data: {
     movies: [
-      //{ url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg' },
-      { url: 'images/mail.png' },
+      { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg' },
+      //{ url: 'images/1.jpg' },
+      //{ url: 'images/2.jpg' },
+      //{ url: 'images/3.jpg' },
+      //{ url: 'images/4.jpg' },
+      //{ url: 'images/5.jpg' },
       { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg' },
       { url: 'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg' },
       { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg' }
@@ -12,50 +16,51 @@ Page({
       {
         name: 'Bugzilla',
         url: 'button/index',
-        icon: '/icons/tongji2.png',
+        icon: '/icons/work.png',
         code: '10'
       },
       {
-        name: 'Team',
-        url: 'index/index',
-        icon: '/icons/team1.png',
+        name: 'Bugzilla Search',
+        //url: 'index/index',
+        url: 'newsearch/search',
+        icon: '/icons/search.png',
         code: '11'
       },
       {
-        name: 'Happy Time',
-        url: '/pages/Course/course',
+        name: 'HPQC',
+        url: 'search/search',
         icon: '/icons/happy.png',
         code: '10'
       },
       {
-        name: 'Location',
+        name: 'P4',
         icon: '/icons/location.png',
         code: '11'
       },
       {
-        name: 'Company Culture',
+        name: 'Jenking',
         url: '/pages/Course/course',
         icon: '/icons/culture.png',
         code: '10'
       },
       {
-        name: 'Work Time',
+        name: 'Install Build',
         icon: '/icons/work.png',
         code: '11'
       },
       {
-        name: 'Join us',
+        name: 'Team',
         url: '/pages/Course/course',
         icon: '/icons/join.png',
         code: '10'
       },
       {
-        name: 'Contact us',
+        name: 'Family',
         icon: '/icons/contact.png',
         code: '11'
       },
       {
-        name: 'See More',
+        name: 'TBD',
         url: '/pages/Course/course',
         icon: '/icons/more.png',
         code: '10'
@@ -65,5 +70,12 @@ Page({
   onLoad: function () {
     console.log('onLoad')
     var that = this
+  },
+  onShareAppMessage: function () {
+    return {
+      title: 'My Project',
+      desc: 'Interesting',
+      //path: '/page/user?id=123'
+    }
   }
 })

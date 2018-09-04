@@ -17,14 +17,17 @@
 </view>
     </swiper-item>
     <!-- 我是呵呵 -->
-    <swiper-item >
+    <swiper-item>
     <view class="table" bindtap='updatedata'>
   <view class="tr bg-w">
     <view class="th1">bug_id</view>
     <view class="th2">summary</view>
   </view>
-  <scroll-view wx:for="{{listData}}" wx:key="{{bugid}}">
-    <view class="td bg-g" wx:if="{{index % 2 == 0}}">
+  <swiper class="tab-right"  vertical="true" autoplay="false"   display-multiple-items='8'>
+  
+    <block  wx:for="{{listData}}" wx:key="{{bugid}}">
+      <swiper-item>
+          <view class="td bg-g" wx:if="{{index % 2 == 0}}">
       <view class="td1" bindtap='goBaidu' data-id='{{item.bugid}}'>{{item.bugid}}</view>
       <view class="td2">{{item.summary}}</view>
     </view>
@@ -32,7 +35,10 @@
       <view class="td1" bindtap='goBaidu' data-id='{{item.bugid}}'>{{item.bugid}}</view>
       <view class="td2">{{item.summary}}</view>
     </view>
-  </scroll-view>
+      </swiper-item>
+    </block>
+  
+  </swiper>
 </view>
 </swiper-item>
     <!-- 我是嘿嘿 -->
@@ -40,9 +46,9 @@
     <swiper-item>
     <view class='select' catchtap='selectTap'>
         <text class='select_text'>{{selectData[index]}}</text>
-        <image class='select_img {{show&&"select_img_rotate"}}'></image>         
+        <image class='select_img {{show&&"select_img_rotate"}}'      src='/icons/mail.png'></image>         
 </view>
-<view class='option_box' style='height:{{show?(selectData.length>5?200:selectData.length*60):0}}rpx;'>
+<view class='option_box' style='height:{{show?(selectData.length>5?300:selectData.length*60):0}}rpx;'>
         <text class='option' style='{{index==selectData.length-1&&"border:0;"}}' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}' catchtap='optionTap'>{{item}}</text>
 </view>
      <view class="container">

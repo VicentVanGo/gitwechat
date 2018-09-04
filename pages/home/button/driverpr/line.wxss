@@ -39,7 +39,7 @@ page{
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 5rpx  0rpx 0rpx;
+  padding: 90rpx 5rpx  0rpx 5rpx;
   box-sizing: border-box;
 } 
 .select_box{
@@ -53,7 +53,7 @@ page{
   box-sizing: border-box;
   width: 100%;
   height: 70rpx;
-  border:1px  solid #4169E1;
+  border:1px  solid #efefef;
   border-radius: 8rpx;
   display: flex;
   align-items: center;
@@ -62,7 +62,7 @@ page{
 .select_text{
   font-size: 30rpx;
   flex: 1;
-  padding: 0rpx 0rpx;
+  padding: 0rpx 40rpx;
 }
 .select_img{
   width: 40rpx;
@@ -107,21 +107,21 @@ page{
   display: flex;
   width: 100%;
   justify-content: center;
-  height: 3rem;
+  height: 5rem;
   align-items: center;
 }
 .td1 { 
     width:30%;
     justify-content: center;
     text-align: center;
-   
+    height: 5rem;
 }
 .td2 {
     width:70%;
     justify-content: center;
     text-align: center;
     font-size: small;
-   
+    height: 5rem;
 }
 .bg-w{
   background: snow;
@@ -150,5 +150,5 @@ page{
 .tab-right {
     width: 100%;
     margin: 0rpx auto;
-    height: 400px;
+    height: 550px;
 }

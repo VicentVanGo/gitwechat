@@ -1,0 +1,16 @@
+<view class="table" bindtap='updatedata'>
+  <view class="tr bg-w">
+    <view class="th1">bug_id</view>
+    <view class="th2">summary</view>
+  </view>
+  <scroll-view wx:for="{{listData}}" wx:key="{{bugid}}">
+    <view class="td bg-g" wx:if="{{index % 2 == 0}}">
+      <view class="td1" bindtap='goBaidu' data-id='{{item.bugid}}'>{{item.bugid}}</view>
+      <view class="td2">{{item.summary}}</view>
+    </view>
+    <view class="td" wx:else>
+      <view class="td1" bindtap='goBaidu' data-id='{{item.bugid}}'>{{item.bugid}}</view>
+      <view class="td2">{{item.summary}}</view>
+    </view>
+  </scroll-view>
+</view>

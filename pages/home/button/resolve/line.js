@@ -1,45 +1,44 @@
 var wxCharts = require('../../../utils/wxcharts.js');
 var app = getApp();
 var lineChart = null;
-var COL = 'red';
+//columnchart
+var LIST = [];
+var Len;
+var timeweek;
 var columnChart = null;
 var chartData = {
   main: {
-    title: '总成交量',
-    data: [15, 20, 45, 37, 18, 20, 15, 20, 45, 37, 18, 20],
-    categories: ['2012', '2013', '2014', '2015', '2016', '2017', '2012', '2013', '2014', '2015', '2016', '2017']
+    title: 'Resolve Bug Num',
+    data: [],
+    categories: ['ningz', 'mengc', 'yixuanw', 'minghuiw', 'hhan',
+      'jiangx', 'lid', 'luwang', 'huilinw', 'ljingying',
+      'dayuw', 'chaofengw', 'yex', 'bdang', 'dpang',
+      'yhu']
   },
-  sub: [{
-    title: '2012年度成交量',
-    data: [70, 40, 65, 100, 34, 18],
-    categories: ['1', '2', '3', '4', '5', '6']
-  }, {
-    title: '2013年度成交量',
-    data: [55, 30, 45, 36, 56, 13],
-    categories: ['1', '2', '3', '4', '5', '6']
-  }, {
-    title: '2014年度成交量',
-    data: [76, 45, 32, 74, 54, 35],
-    categories: ['1', '2', '3', '4', '5', '6']
-  }, {
-    title: '2015年度成交量',
-    data: [76, 54, 23, 12, 45, 65],
-    categories: ['1', '2', '3', '4', '5', '6']
-  }]
 };
-
+//linechart
+var categories = [];
+var COL = {
+  'ningz': 'grey', 'mengc': 'grey', 'yixuanw': 'grey', 'minghuiw': 'grey', 'hhan': 'grey', 'jiangx': 'grey', 'lid': 'grey', 'luwang': 'grey', 'huilinw': 'grey', 'ljingying': 'grey', 'dayuw': 'grey', 'chaofengw': 'grey', 'yex': 'grey', 'bdang': 'grey', 'dpang': 'grey', 'yhu': 'grey'
+};
 Page({
   data: {
     winWidth: 0,
     winHeight: 0,
     // tab切换
     currentTab: 0,
-    chartTitle: '总成交量',
+    secondtab:'...',
+    chartTitle: 'Resolve Bug Num',
     isMainChartDisplay: true,
-    show: false,//控制下拉列表的显示隐藏，false隐藏、true显示
-    selectData: ['1', '2', '3', '4', '5', '6'],//下拉列表的数据
-    index: 0//选择的下拉列表下标
-    },
+    show: true,//控制下拉列表的显示隐藏，false隐藏、true显示
+    selectData: ['ningz', 'mengc', 'yixuanw', 'minghuiw', 'hhan',
+      'jiangx', 'lid', 'luwang', 'huilinw', 'ljingying',
+      'dayuw', 'chaofengw', 'yex', 'bdang', 'dpang',
+      'yhu'],//下拉列表的数据
+    index: 16, //选择的下拉列表下标
+    listData: [{ 'bugid': 0, "summary":  0 }],
+    sumofdata:0,
+  },
      // 点击下拉显示框
   
   backToMainChart: function () {
@@ -47,18 +46,18 @@ Page({
       chartTitle: chartData.main.title,
       isMainChartDisplay: true
     });
-  columnChart.updateData({
+    columnChart.updateData({
       categories: chartData.main.categories,
       series: [{
-        name: '成交量',
+        name: 'resolve num',
         data: chartData.main.data,
         format: function (val, name) {
-          return val.toFixed(2) + '万';
+          return val.toFixed(0);
         }
       }]
     });
   },
-  touchHandler: function (e) {
+  touchHandler1: function (e) {
     console.log(lineChart.getCurrentDataIndex(e));
     lineChart.showToolTip(e, {
       // background: '#7cb5ec',
@@ -66,23 +65,37 @@ Page({
         return category + ' ' + item.name + ':' + item.data
       }
     });
+  },
+  touchHandler: function (e) {
     var index = columnChart.getCurrentDataIndex(e);
-    if (index > -1 && index < chartData.sub.length && this.data.isMainChartDisplay) {
-      this.setData({
-        chartTitle: chartData.sub[index].title,
-        isMainChartDisplay: false
-      });
-      columnChart.updateData({
-        categories: chartData.sub[index].categories,
-        series: [{
-          name: '成交量',
-          data: chartData.sub[index].data,
-          format: function (val, name) {
-            return val.toFixed(2) + '万';
-          }
-        }]
-      });
-
+    if (index > -1 && index < chartData.main.categories.length && this.data.isMainChartDisplay) {
+      var skey = chartData.main.categories[index];
+      var that = this
+      wx.request({
+        url: 'http://123.206.68.186:443/info/reso',//换成实际接口地址
+        data: { 'keyname': skey },
+        success: function (res) {
+          console.log('id from server is: ' + res['data']['num']);
+          console.log('id from server is: ' + res['data']['my']);
+          LIST=[];
+          Len = res['data']['num'];
+          for (var d = 0; d < res['data']['num']; d++) {
+            //list[d]["bugid"]=res['data']['my'][d][0];
+            //list[d]["summary"] = res['data']['my'][d][1];
+            console.log("111");
+            LIST[d] = { "bugid": res['data']['my'][d][0], "summary": res['data']['my'][d][1] };
+          };
+          if (Len >= 8) { Len = 8 };
+          //console.log(LIST);
+          that.setData({
+            listData: LIST,
+            secondtab: skey,
+            currentTab: 1,
+            sumofdata: Len,
+          });
+        },
+      })
+      
     }
   },
   selectTap() {
@@ -101,35 +114,27 @@ Page({
   //touchHandler: function (e) {
         
   //},    
-  createSimulationData: function () {
-        var categories = [];
-        var data = [];
-        for (var i = 0; i < 10; i++) {
-            categories.push('2016-' + (i + 1));
-            data.push(Math.random()*(20-10)+10);
-        }
-        // data[4] = null;
-        return {
-            categories: categories,
-            data: data
-        }
-  },
+  
   updateData: function () {
-        var simulationData = this.createSimulationData();
-        var series = [{
-            name: '成交量1',
-            data: simulationData.data,
-            format: function (val, name) {
-                return val.toFixed(2) + '万';
-            }
-        }];
-        lineChart.updateData({
-            categories: simulationData.categories,
-            series: series
-        });
+
+    //let CIndex = this.optionTap.Index;
+    for (var i = 0; i < 16; i++) {
+      if (i == this.data.index) {
+        COL[this.data.selectData[this.data.index]] = 'red';
+      }
+      else {
+        COL[this.data.selectData[i]] = 'grey';
+      }
+
+    }
+    //COL[this.data.selectData[this.data.index]] = 'red';
+    this.onReady();
+
+
   },
 
   onReady: function (e) {
+
     var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();
@@ -137,38 +142,182 @@ Page({
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
-
-    columnChart = new wxCharts({
-      canvasId: 'columnCanvas',
-      type: 'column',
-      animation: true,
-      categories: chartData.main.categories,
-      series: [{
-        name: '成交量',
-        data: chartData.main.data,
-        format: function (val, name) {
-          return val.toFixed(2) + '万';
-        }
-      }],
-      yAxis: {
-        format: function (val) {
-          return val + '万';
-        },
-        title: 'hello',
-        min: 0
-      },
-      xAxis: {
-        disableGrid: false,
-        type: 'calibration'
-      },
-      extra: {
-        column: {
-          width: 12
-        }
-      },
-      width: windowWidth,
-      height: 300,
-    });
+    wx.request({
+      url: 'http://123.206.68.186:443/resolve',//换成实际接口地址
+      //data: { 'id': 1 },
+      success: function (res) {
+        //chartData.main.data = res.data.data;
+        //chartData.main.data = res.data.category;
+        //var getdata = JSON.stringify(res);
+        console.log('3333333333333333');
+        console.log('id from server is: ' + res['data']);// 控制台显示 1
+        var categories = res['data']['day'];
+        var data1 = res['data']['y01'];
+        var data2 = res['data']['y02'];
+        var data3 = res['data']['y03'];
+        var data4 = res['data']['y04'];
+        var data5 = res['data']['y05'];
+        var data6 = res['data']['y06'];
+        var data7 = res['data']['y07'];
+        var data8 = res['data']['y08'];
+        var data9 = res['data']['y09'];
+        var data10 = res['data']['y10'];
+        var data11 = res['data']['y11'];
+        var data12 = res['data']['y12'];
+        var data13 = res['data']['y13'];
+        var data14 = res['data']['y14'];
+        var data15 = res['data']['y15'];
+        var data16 = res['data']['y16'];
+        //var simulationData = this.createSimulationData();
+        lineChart = new wxCharts({
+          canvasId: 'lineCanvas',
+          type: 'line',
+          categories: categories,
+          animation: true,
+          // background: '#f5f5f5',
+          series: [{
+            name: 'ningz',
+            //data: simulationData.data,
+            data: data1,
+            color: COL['ningz'],
+            LineWidth:160,
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'mengc',
+            data: data2,
+            color: COL['mengc'],
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'yixuanw',
+            data: data3,
+            color: COL['yixuanw'],
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'minghuiw',
+            data: data4,
+            color: COL['minghuiw'],
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'hhan',
+            data: data5,
+            color: COL['hhan'],
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'jiangx',
+            data: data6,
+            color: COL['jiangx'],
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'lid',
+            data: data7,
+            color: COL['lid'],
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'luwang',
+            data: data8,
+            color: COL['luwang'],
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'huilinw',
+            data: data9,
+            color: COL['huilinw'],
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'ljingying',
+            data: data10,
+            color: COL['ljingying'],
+            //color:COL,
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+            }, {
+              name: 'dayuw',
+              data: data11,
+              color: COL['dayuw'],
+              //color:COL,
+              format: function (val, name) {
+                return val.toFixed(0);
+              }
+            }, {
+            name: 'chaofengw',
+            data: data12,
+            color: COL['chaofengw'],
+            //color:COL,
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'yex',
+            data: data13,
+            color: COL['yex'],
+            //color:COL,
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'bdang',
+            data: data14,
+            color: COL['bdang'],
+            //color:COL,
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'dpang',
+            data: data15,
+            color: COL['dpang'],
+            //color:COL,
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }, {
+            name: 'yhu',
+            data: data16,
+            color: COL['yhu'],
+            //color:COL,
+            format: function (val, name) {
+              return val.toFixed(0);
+            }
+          }
+          ],
+          xAxis: {
+            disableGrid: true
+          },
+          yAxis: {
+            title: 'Bug Num',
+            format: function (val) {
+              return val.toFixed(0);
+            },
+            min: 0
+          },
+          width: windowWidth,
+          height: 250,
+          dataLabel: false,
+          dataPointShape: true,
+          extra: {
+            lineStyle: 'straight'
+          }
+        });
+      }
+    })
   },
 
 
@@ -180,95 +329,45 @@ Page({
         } catch (e) {
             console.error('getSystemInfoSync failed!');
         }
-        
-        var simulationData = this.createSimulationData();
-        lineChart = new wxCharts({
-            canvasId: 'lineCanvas',
-            type: 'line',
-            categories: simulationData.categories,
-            animation: true,
-            // background: '#f5f5f5',
-            series: [{
-                name: '成交量1',
-                data: simulationData.data,
-                format: function (val, name) {
-                    return val.toFixed(2) + '万';
-                }
-            }, {
-                name: '成交量2',
-                data: [2, 0, 0, 3, null, 4, 0, 0, 2, 0],
-                format: function (val, name) {
-                    return val.toFixed(2) + '万';
-                }
-              }, {
-                name: '成交量3',
-                data: [1, 1, 0, 1, 1,2, 0, 0, 2, 0],
-                format: function (val, name) {
-                  return val.toFixed(2) + '万';
-                }
-            }, {
-              name: '成交量4',
-              data: [2, 2, 0, 1, 1, 2, 0, 0, 2, 0],
-              format: function (val, name) {
-                return val.toFixed(2) + '万';
-              }
-              }, {
-                name: '成交量5',
-                data: [3, 1, 3, 2, 1, 2, 0, 0, 2, 0],
-                format: function (val, name) {
-                  return val.toFixed(2) + '万';
-                }
-            }, {
-              name: '成交量6',
-              data: [1, 3, 2, 1, 1, 1, 0, 0, 2, 0],
-              format: function (val, name) {
-                return val.toFixed(2) + '万';
-              }
-              }, {
-                name: '成交量7',
-                data: [4, 3, 2, 2, 1, 2, 0, 0, 2, 0],
-                format: function (val, name) {
-                  return val.toFixed(2) + '万';
-                }
-            }, {
-              name: '成交量8',
-              data: [2, 4, 0, 2, 1, 2, 0, 0, 2, 0],
-              format: function (val, name) {
-                return val.toFixed(2) + '万';
-              }
-              }, {
-                name: '成交量9',
-                data: [1, 3, 2,3,3, 2, 0, 0, 2, 0],
-                format: function (val, name) {
-                  return val.toFixed(2) + '万';
-                }
-            }, {
-              name: '成交量10',
-              data: [0, 1, 2, 2,3, 2, 0, 0, 2, 0],
-              color:COL,
-              format: function (val, name) {
-                return val.toFixed(2) + '万';
-              }
+    wx.request({
+      url: 'http://123.206.68.186:443/week/res',//换成实际接口地址
+      //data: { 'id': 1 },
+      success: function (res) {
+        chartData.main.data = res['data']['comdd'];
+        timeweek = res['data']['comd'];
+        columnChart = new wxCharts({
+          canvasId: 'columnCanvas',
+          type: 'column',
+          animation: true,
+          categories: chartData.main.categories,
+          series: [{
+            name: timeweek,
+            data: chartData.main.data,
+            format: function (val, name) {
+              return val.toFixed(0);
             }
-              ],
-            xAxis: {
-                disableGrid: true
+          }],
+          yAxis: {
+            format: function (val) {
+              return val;
             },
-            yAxis: {
-                title: '成交金额 (万元)',
-                format: function (val) {
-                    return val.toFixed(2);
-                },
-                min: 0
-            },
-            width: windowWidth,
-            height: 300,
-            dataLabel: false,
-            dataPointShape: true,
-            extra: {
-                lineStyle: 'straight'
+            //title: 'comment num',
+            min: 0
+          },
+          xAxis: {
+            disableGrid: false,
+            type: 'calibration'
+          },
+          extra: {
+            column: {
+              width: 12
             }
+          },
+          width: windowWidth,
+          height: 300,
         });
+      },
+    })
         var that = this;
 
         /** 
@@ -285,7 +384,7 @@ Page({
 
         });
   },
-      
+     
     /**
      * 滑动切换tab
      */
@@ -309,5 +408,16 @@ Page({
           currentTab: e.target.dataset.current
         })
       }
-  }
+  },
+  goBaidu: function (e) {
+    var id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../out/out?searchID=' + id, 
+      success: function () {
+
+      },       //成功后的回调；
+      fail: function () { },         //失败后的回调；
+      complete: function () { }      //结束后的回调(成功，失败都会执行)
+    })
+  },
 });

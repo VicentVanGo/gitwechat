@@ -1,0 +1,9 @@
+<view class="container">
+	<view class="title">
+		
+		{{chartTitle}}
+	</view>
+    <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+    <view wx:if="{{isMainChartDisplay}}" style="text-align:center">Click on the bar to see more</view>
+    <view wx:if="{{!isMainChartDisplay}}" class="back-btn" bindtap="backToMainChart">back</view>
+</view>

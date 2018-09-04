@@ -5,38 +5,39 @@ Page({
   data: {
     routers: [
       {
-        name: 'Driver',
+        //name: 'DriverSR',
         url: 'driver/column',
-        icon: '/icons/timg.jpg',
-        code: '10'
+        icon: '/icons/dsr.png',
+        code: '10',
       },
       {
-        name: 'Report',
-        url: 'report/line',
-        icon: '/icons/tongji2.png',
-        code: '11'
-      },
-      {
-        name: 'Resolve',
+        //name: 'resolve',
         url: 'resolve/line',
-        icon: '/icons/tongji2.png',
+        icon: '/icons/reso.png',
+        code: '11',
+      },
+      {
+        //name: 'DriverPR',
+        url: 'lastweek/line',
+        icon: '/icons/dpr.png',
         code: '10'
       },
       {
-        name: 'Comment',
+        //name: 'Comment',
         url: 'comment/line',
-        icon: '/icons/tongji2.png',
+        icon: '/icons/comm.png',
         code: '11'
       },
       {
-        name: 'Python',
-        url: '/pages/Course/course',
-        icon: '/icons/mail.png',
+        //name: 'NoGoBug',
+        url: 'nogo/search',
+        icon: '/icons/nogo.png',
         code: '10'
       },
       {
-        name: 'JavaScript',
-        icon: '/icons/mail.png',
+        //name: 'Report',
+        url: 'report/line',
+        icon: '/icons/repo.png',
         code: '11'
       }
     ]
