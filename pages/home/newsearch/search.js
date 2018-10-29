@@ -6,7 +6,7 @@ Page({
    */
   data: {
     show: false,//控制下拉列表的显示隐藏，false隐藏、true显示
-    selectData: ['assignee', 'needinfo'],//下拉列表的数据
+    selectData: ['assignee', 'needinfo','needverify'],//下拉列表的数据
     index: 0,//选择的下拉列表下标
     phone: '',
     password: '',

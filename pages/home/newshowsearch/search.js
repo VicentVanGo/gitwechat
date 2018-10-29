@@ -12,11 +12,11 @@ Page({
     var swho = option['Who'];
     var that = this;
     wx.request({
-      url: 'http://123.206.68.186:443/newsearch',//换成实际接口地址
+      url: 'https://znbook.cn/newsearch',//换成实际接口地址
       data: { 'keytype': skey,'keywho': swho},
       success: function (res) {
         console.log('id from server is: ' + res['data']['num']);
-        LIST=[];
+        LIST = [{ "bugid": 'none', "summary": 'none', "driver": 'none', "color": 'none' }];
         for (var d = 0; d < res['data']['num']; d++) {
           //list[d]["bugid"]=res['data']['my'][d][0];
           //list[d]["summary"] = res['data']['my'][d][1];

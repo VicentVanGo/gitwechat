@@ -1,0 +1,32 @@
+page{
+  background: #ffffff;
+}
+.table {
+  border: 0px solid darkgray;
+}
+.body-view{
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+text{
+  border: 2rpx #4169E1;
+  width: 400rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttons{
+  
+  display: flex;
+  align-items: center;
+  flex-direction:column;
+  
+
+}
+.btn {
+  width: 40%;
+  margin-top: 30rpx;
+  color: #FFF;
+}

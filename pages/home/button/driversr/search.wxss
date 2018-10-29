@@ -1,0 +1,67 @@
+/* pages/home/newsearch/search.wxss */
+.input{
+    padding-left: 10px;
+    height: 44px;
+}
+
+.inputView{
+    border:  2px solid blue;
+    border-radius: 40px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+.select_box{
+  background: #fff;
+  width: 90%;
+  margin: 0rpx auto;
+  position: relative;
+}
+.select{
+  padding-left: 20px;
+  border:  2px solid blue;
+  border-radius: 40px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 15px;
+  box-sizing: border-box;
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+.select_text{
+  font-size: 30rpx;
+  flex: 1;
+}
+.select_img{
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  transition:transform 0.3s;
+}
+.select_img_rotate{
+  transform:rotate(180deg); 
+}
+.option_box{
+  border:  0px solid blue;
+  border-radius: 40px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 15px;
+  position: absolute;
+  top: 70rpx;
+  width: 90%;
+  box-sizing: border-box;
+  height: 0;
+  overflow-y: auto;
+  border-top: 0;
+  background: #f3f7f7;
+  transition: height 0.3s;
+}
+.option{
+  display: block;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  border-bottom: 1px solid #efefef;
+  padding: 20rpx;
+}

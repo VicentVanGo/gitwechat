@@ -1,0 +1,16 @@
+<view class="table">
+  <view class="tr bg-w">
+    <view class="th1">driver</view>
+    <view class="th2">submitter</view>
+  </view>
+  <scroll-view wx:for="{{listData}}" wx:key="{{driver}}">
+    <view class="td bg-g" wx:if="{{index % 2 == 0}}">
+      <view class="td1" bindtap='gotip' data-id='{{item.desp}}'>{{item.drivers}}</view>
+      <view class="td2" >{{item.submitter}}</view>
+    </view>
+    <view class="td" wx:else>
+      <view class="td1" bindtap='gotip' data-id='{{item.desp}}'>{{item.drivers}}</view>
+      <view class="td2">{{item.submitter}}</view>
+    </view>
+  </scroll-view>
+</view>

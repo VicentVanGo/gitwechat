@@ -1,7 +1,7 @@
 <view class="swiper-tab">
     <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">Last Week</view>
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">{{secondtab}}</view>
-    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">Duration</view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">Two months</view>
 </view>
  
 <swiper current="{{currentTab}}" class="swiper-box" duration="0" style="height:{{winHeight - 31}}px" bindchange="bindChange" >

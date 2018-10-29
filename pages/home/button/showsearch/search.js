@@ -11,18 +11,18 @@ Page({
     var skey = option['searchValue'];
     var that = this
     wx.request({
-      url: 'http://123.206.68.186:443/nogo',//换成实际接口地址
+      url: 'https://znbook.cn/driverpr',//换成实际接口地址
       data: { 'keyname': skey },
       success: function (res) {
         console.log('id from server is: ' + res['data']['num']);
-        LIST=[];
+        LIST = [{ "bugid": 'none', "summary": 'none', "driver": 'none', "color": 'none' }];
         for (var d = 0; d < res['data']['num']; d++) {
           //list[d]["bugid"]=res['data']['my'][d][0];
           //list[d]["summary"] = res['data']['my'][d][1];
           console.log("111");
           LIST[d] = { "bugid": res['data']['my'][d][0], "summary": res['data']['my'][d][1] };
         }
-        //console.log(LIST);
+        console.log(LIST);
         that.setData({
           listData: LIST
         });

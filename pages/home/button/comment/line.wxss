@@ -8,11 +8,7 @@ page{
 	margin-top: 2;    
 	margin-bottom: 0rpx;
 }
-.back-btn {
-	position: absolute;
-	left: 20rpx;
-	top: 0;
-}
+
 .swiper-tab{
 	width: 100%;
   background: #f3f7f7;
@@ -29,7 +25,7 @@ page{
 .on{ color: #4169E1;
 	border-bottom: 0rpx solid #4169E1;}
  
-.swiper-box{ display: block; height: 100%; width: 100%; overflow: show; }
+.swiper-box{ display: table; height: 100%; width: 100%; overflow: scroll; }
 .swiper-box view{
 	text-align: center;
 }

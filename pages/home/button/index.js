@@ -6,7 +6,7 @@ Page({
     routers: [
       {
         //name: 'DriverSR',
-        url: 'driver/column',
+        url: 'driversr/search',
         icon: '/icons/dsr.png',
         code: '10',
       },
@@ -18,7 +18,7 @@ Page({
       },
       {
         //name: 'DriverPR',
-        url: 'lastweek/line',
+        url: 'driverpr/search',
         icon: '/icons/dpr.png',
         code: '10'
       },

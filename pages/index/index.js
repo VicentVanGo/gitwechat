@@ -2,6 +2,7 @@
 //获取应用实例
 var app = getApp()
 Page({
+  /*
   data: {
     routers: [
       {
@@ -50,7 +51,7 @@ Page({
         icon:'' 
       }
     ]
-  },
+  },*/
   onLoad: function () {
     console.log('onLoad')
     var that = this

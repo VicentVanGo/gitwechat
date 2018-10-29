@@ -1,0 +1,14 @@
+<view class="btn-area">
+<view class="body-view">
+    <text >  \n</text>
+  </view>
+  <view class="buttons">
+  <button class="btn" type="default" size='mini' backgroundcolor="blue" bindtap="gop4">one day data</button>
+  </view>
+  <view class="body-view">
+    <text >  \n</text>
+  </view>
+  <view class="buttons">
+  <button class="btn" type="default" size='mini' bindtap="gop4week" backgroundcolor="blue">week data</button>
+  </view>
+</view>

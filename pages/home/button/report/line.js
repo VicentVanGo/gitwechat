@@ -72,7 +72,7 @@ Page({
       var skey = chartData.main.categories[index];
       var that = this
       wx.request({
-        url: 'http://123.206.68.186:443/info/repo',//换成实际接口地址
+        url: 'https://znbook.cn/info/repo',//换成实际接口地址
         data: { 'keyname': skey },
         success: function (res) {
           console.log('id from server is: ' + res['data']['num']);
@@ -143,7 +143,7 @@ Page({
       console.error('getSystemInfoSync failed!');
     }
     wx.request({
-      url: 'http://123.206.68.186:443/report',//换成实际接口地址
+      url: 'https://znbook.cn/report',//换成实际接口地址
       //data: { 'id': 1 },
       success: function (res) {
         //chartData.main.data = res.data.data;
@@ -329,7 +329,7 @@ Page({
             console.error('getSystemInfoSync failed!');
         }
     wx.request({
-      url: 'http://123.206.68.186:443/week/rep',//换成实际接口地址
+      url: 'https://znbook.cn/week/rep',//换成实际接口地址
       //data: { 'id': 1 },
       success: function (res) {
         chartData.main.data = res['data']['comdd'];

@@ -4,7 +4,7 @@
         <text class='select_text'>{{selectData[index]}}</text>
         <image class='select_img {{show&&"select_img_rotate"}}'      ></image>         
 </view>
-<view class='option_box' style='height:{{show?(selectData.length>5?300:selectData.length*60):0}}rpx;margin-top: 30%'>
+<view class='option_box' style='height:{{show?(selectData.length>5?300:selectData.length*40):0}}rpx;margin-top: 30%'>
         <text class='option' style='{{index==selectData.length-1&&"border:0;"}}' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}' catchtap='optionTap'>{{item}}</text>
 </view>
 <view class="inputView" style="margin-top: 10% ">

@@ -1,6 +1,6 @@
 /**index.wxss**/
 .swiper {
-  height: 280rpx;
+  height: 390rpx;
   width: 100%;
 }
 .swiper image {
@@ -22,7 +22,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin-top: 5px;
+  margin-top: 20px;
   padding: 0rpx 5rpx  0rpx 10rpx;
   box-sizing: border-box;
 }
@@ -66,9 +66,13 @@
 .weui-grid {
     position: relative;
     float: left;
-    padding: 20px 10px;
-    width: 33.33333333%;
+    padding: 40px 10px;
+    width: 50%;
     box-sizing: border-box;
+    border-bottom: 1px solid #1296db;
+    
+    
+    
 }
  
  .weui-grid:before {
@@ -77,8 +81,10 @@
     right: 0;
     top: 0;
     width: 1px;
-    bottom: 0;
+    bottom: 1px;
     border-right: 1px solid #1296db;
+    
+    
     color: #1296db;
     -webkit-transform-origin: 100% 0;
     transform-origin: 100% 0;
@@ -93,7 +99,8 @@
     bottom: 0;
     right: 0;
     height: 1px;
-    border-bottom: 1px solid #1296db;
+    
+
     color: #d9d9d9;
     -webkit-transform-origin: 0 100%;
     transform-origin: 0 100%;

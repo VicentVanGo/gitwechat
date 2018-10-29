@@ -1,4 +1,4 @@
-<view class="table" bindtap='updatedata'>
+<view class="table">
   <view class="tr bg-w">
     <view class="th1">bug_id</view>
     <view class="th2">summary</view>

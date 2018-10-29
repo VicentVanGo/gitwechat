@@ -1,0 +1,16 @@
+<!--pages/home/newsearch/search.wxml-->
+<!--style的优先级比class高会覆盖和class相同属性-->
+<view class='select' catchtap='selectTap' style="margin-top: 20% ">
+        <text class='select_text'>{{selectData[index]}}</text>
+        <image class='select_img {{show&&"select_img_rotate"}}'      ></image>         
+</view>
+<view class='option_box' style='height:{{show?(selectData.length>5?300:selectData.length*60):0}}rpx;margin-top: 20%'>
+        <text class='option' style='{{index==selectData.length-1&&"border:0;"}}' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}' catchtap='optionTap'>{{item}}</text>
+</view>
+<!--view class="inputView" style="margin-top: 10% ">
+<input class="input" type="text" placeholder="请输入账号" placeholder-style="color: bule" bindinput="listenerPhoneInput" />
+</view-->
+<!--view class="inputView">
+<input class="input" password="true" placeholder="请输入密码" placeholder-style="color: bule" bindinput="listenerPasswordInput"/>
+</view-->
+<button style="margin-left: 15rpx; margin-right: 15rpx; margin-top: 300rpx; border-radius: 40rpx;" backgroundcolor="blue" type="primary" bindtap="listenerLogin">Search</button>

@@ -5,16 +5,26 @@
     "pages/home/search/search",
     "pages/home/newsearch/search",
     "pages/home/button/index",
-    "pages/home/button/driversr/column",
+    "pages/home/button/driversr/search",
     "pages/home/button/report/line",
-    "pages/home/button/driverpr/line",
+    "pages/home/button/driverpr/search",
     "pages/home/button/out/out",
     "pages/home/button/resolve/line",
     "pages/home/button/comment/line",
     "pages/home/button/nogo/search",
     "pages/home/button/showsearch/search",
+    "pages/home/button/srshow/search",
     "pages/home/showsearch/search",
     "pages/home/newshowsearch/search",
+    "pages/home/p4/search",
+    "pages/home/p4week/search",
+    "pages/home/perforce/search",
+    "pages/home/hpqc/search",
+    "pages/home/mainnew/line",
+    "pages/home/mainreg/line",
+    "pages/home/productionreg/line",
+    "pages/home/upnew/line",
+    "pages/home/upreg/line",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -26,30 +36,9 @@
     "enablePullDownRefresh":true
 
   },
-  "tabBar":{
-    "color": "white",
-    "backgroundColor":"#e6e6e6",
-    "borderStyle":"white",
-    "position":"bottom",
-    "list":[
-      {
-       "selectedIconPath":"icons/help1.png",
-       "iconPath":"icons/help2.png",
-       "pagePath":"pages/logs/logs",
-       "txt":"Help"
-      },
-      {
-        "selectedIconPath": "icons/home1.png",
-        "iconPath": "icons/home2.png",
-        "pagePath": "pages/home/index",
-        "txt": "HOME"
-      },
-      {
-        "selectedIconPath": "icons/enjoy1.png",
-        "iconPath": "icons/enjoy2.png",
-        "pagePath": "pages/index/index",
-        "txt": "Enjoy"
-      }
-    ]
+  
+  "networkTimeout":{
+    "request":600000
   }
 }
+

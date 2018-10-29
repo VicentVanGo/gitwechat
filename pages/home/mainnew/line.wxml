@@ -1,0 +1,39 @@
+<view class='select' catchtap='selectTap'>
+        <text class='select_text'>{{selectData[index]}}</text>
+        <image class='select_img {{show&&"select_img_rotate"}}'      ></image>         
+</view>
+<view class='option_box' style='height:{{show?(selectData.length>5?100:selectData.length*50):0}}rpx;'>
+        <text class='option' style='{{index==selectData.length-1&&"border:0;"}}' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}' catchtap='optionTap'>{{item}}</text>
+</view>
+<view class="container">
+      <view class="table" bindtap='updatedata'>
+         <view class="tr bg-w">
+         <view class="th1">folder</view>
+         <view class="th2">driver</view>
+         <view class="th2">noupdate</view>
+         </view>
+         <scroll-view wx:for="{{listData}}" wx:key="{{bugid}}">
+            <view class="td bg-g" wx:if="{{index % 2 == 0}}">
+            <view class="td1">{{item.folder}}</view>
+            <view class="td2">{{item.driver}}</view>
+            <view class="td3">{{item.num}}</view>
+            </view>
+            <view class="td" wx:else>
+              <view class="td1">{{item.folder}}</view>
+              <view class="td2">{{item.driver}}</view>
+              <view class="td3">{{item.num}}</view>
+            </view>
+        </scroll-view>
+      </view>
+      <div align="center"> 
+       <button  class='button' type="default" size='mini' bindtap="updateData" backgroundcolor="blue">Select</button>
+      </div>
+     
+</view>  
+  
+  
+  
+  
+
+    
+

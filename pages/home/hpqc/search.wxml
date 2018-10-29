@@ -1,0 +1,23 @@
+<view class="btn-area">
+  <view class="body-view">
+    <text >main\n</text>
+  </view>
+  <view class="buttons">
+  <!--button class="btn" type="default" size='mini' backgroundcolor="blue" bindtap="mainnew">new feature</button-->
+  <button class="btn" type="default" size='mini' backgroundcolor="blue" bindtap="mainreg">regression</button>
+  </view>
+  <view class="body-view">
+    <text >upgrade\n</text>
+  </view>
+  <view class="buttons">
+  <!--button class="btn" type="default" size='mini' bindtap="upnew">new feature</button-->
+  <button class="btn" type="default" size='mini' bindtap="upreg" backgroundcolor="blue">regression</button>
+  </view>
+  <view class="body-view">
+    <text >production\n</text>
+  </view>
+  <view class="buttons">
+  <!--button class="btn" type="default" size='mini' bindtap="upnew">new feature</button-->
+  <button class="btn" type="default" size='mini' bindtap="productionreg" backgroundcolor="blue">regression</button>
+  </view>
+</view>
